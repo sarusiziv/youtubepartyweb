@@ -26,18 +26,16 @@ export default function playlistReducer (state = initialState.playlist, action){
 			};
 			
 		case types.UPDATE_PLAYLIST_REQUEST:
-			console.log("req")
 			return {
 			...state,
 			isUploading: true
 		};
 			
 		case types.UPDATE_PLAYLIST_SUCCESS:
-
 			return {
 				...state,
 				isUploading: false,
-				playlist: action.payload
+				playlist: state.playlist.concat(action.payload)
 				
 			
 			};

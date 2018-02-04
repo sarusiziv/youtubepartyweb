@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import {updatePlaylist} from './actions/playlistActions'
 import {RingLoader} from 'react-spinners';
+import PropTypes from 'prop-types';
 
 const loadingSpinnerStyle = {
 	marginLeft : "45%",
