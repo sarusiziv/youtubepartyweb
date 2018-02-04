@@ -24,16 +24,13 @@ class YoutubeCard extends React.Component {
 		if (user_ip !== "")
 		{
 
-			if(!(this.props.song['users_likes']).indexOf(user_ip)>= 0)
+			if(!(this.props.song['LikesUsers']).indexOf(user_ip)>= 0)
 			{
-				this.props.actions.likeSongEndPoint(song_id,user_ip, endpoint)	
-				this.props.song['likes']+=1
-				this.props.song['users_likes'].push(user_ip)
-				if((this.props.song['users_dislikes']).indexOf(user_ip)>= 0)
+				this.props.actions.likeSongEndPoint(song_id,user_ip, endpoint)
+				this.props.song['LikesUsers'].push(user_ip)
+				if((this.props.song['DislikesUsers']).indexOf(user_ip)>= 0)
 					{
-						this.props.song['dislikes']-=1
-						this.props.song['users_dislikes'].pop(this.props.song['users_dislikes'].indexOf(user_ip))
-
+						this.props.song['DislikesUsers'].pop(this.props.song['DislikesUsers'].indexOf(user_ip))
 					}
 			}
 		}
@@ -46,16 +43,14 @@ class YoutubeCard extends React.Component {
 		var endpoint = false
 		if (user_ip !== "")
 		{
-			if(!(this.props.song['users_dislikes']).indexOf(user_ip)>= 0)
+			if(!(this.props.song['DislikesUsers']).indexOf(user_ip)>= 0)
 			{
-				this.props.actions.likeSongEndPoint(song_id,user_ip, endpoint)	
-				this.props.song['dislikes']+=1
-				this.props.song['users_dislikes'].push(user_ip)
+				this.props.actions.likeSongEndPoint(song_id,user_ip, endpoint)
+				this.props.song['DislikesUsers'].push(user_ip)
 
-				if((this.props.song['users_likes']).indexOf(user_ip)>= 0)
+				if((this.props.song['LikesUsers']).indexOf(user_ip)>= 0)
 					{
-						this.props.song['likes']-=1
-						this.props.song['users_likes'].pop(this.props.song['users_likes'].indexOf(user_ip))
+						this.props.song['LikesUsers'].pop(this.props.song['LikesUsers'].indexOf(user_ip))
 
 					}
 			}
@@ -67,19 +62,19 @@ class YoutubeCard extends React.Component {
     return (
 	<div style={{ padding:'10px'}}>
 		<Paper style ={{padding:10,backgroundColor:'rgba(141,200,255,0.50)'}}>
-			{this.props.song['name']}
+			{this.props.song['Name']}
 		</Paper>
 		<Paper style ={{padding:10,backgroundColor:'rgba(0,0,0,0.5)'}}>
-		<img src ={this.image_card} height="100" width = "150" alt ="youtube gif"/ > <br/>
+		<img src ={this.image_card} height="100" width = "150" alt ="youtube gif"/> <br/>
 		 <FlatButton
-			  label={this.props.song['likes']}
+			  label={this.props.song['LikesUsers'].length}
 			  primary={true}
 			  icon={<ActionThumbUp/>}
-			  onClick ={()=>this.like(this.props.song_id,this.props.user_ip)}
+			  onClick ={()=>this.like(this.props.song["SongID"],this.props.user_ip)}
 		/> 
 		 <FlatButton
 			  style = {{color:colors.red300}}
-			  label={this.props.song['dislikes']}
+			  label={this.props.song['DislikesUsers'].length}
 			  primary={true}
 			  icon={<ActionThumbDown/>}
 			  onClick = {()=>this.dislike(this.props.song_id,this.props.user_ip)}
